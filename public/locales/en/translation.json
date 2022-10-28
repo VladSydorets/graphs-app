@@ -6,7 +6,7 @@
   "third-instruction": "To remove a vertex/edge, right click on vertex/edge.",
   "fourth-instruction": "To clear the canvas, you can click on 'Clear all' button.",
   "add-btn": "Add",
-  "clear-btn": "Clear all",
+  "clear-btn": "Clear",
   "remove-btn": "Remove",
   "connect-btn": "Connect",
   "export-btn": "Export",

@@ -14,12 +14,12 @@ const Canvas = ({
   const d3SVG = useRef();
 
   useEffect(() => {
+    const svg = d3.select(d3SVG.current);
     const width = parseInt(d3.select("#canvas").style("width")) - 2.5;
     const height = parseInt(d3.select("#canvas").style("height")) - 2.5;
     const radius = 16;
     let mousedownNode = null;
 
-    const svg = d3.select(d3SVG.current);
     svg.selectAll("*").remove();
     svg.attr("width", width).attr("height", height);
 
@@ -298,7 +298,7 @@ const Canvas = ({
       .on("pointermove", updateDragLine)
       .on("pointerup", hideDragLine)
       .on("pointerleave", hideDragLine);
-  }, [nodes, setNodes, links, setLinks, colorValue, mode, setCorrectness]);
+  }, [nodes, links, colorValue, mode, setCorrectness, setLinks, setNodes]);
 
   return (
     <div id="canvas">

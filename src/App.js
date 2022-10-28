@@ -5,6 +5,7 @@ import Canvas from "./components/Canvas";
 import { useState } from "react";
 import { ColorPicker } from "./components/ColorPicker";
 import { useTranslation } from "react-i18next";
+import { saveSvgAsPng } from "save-svg-as-png";
 
 function App() {
   let [colorValue, setColorValue] = useState("#000000");
@@ -44,10 +45,18 @@ function App() {
     t("fourth-instruction"),
   ];
 
+  const handleExport = () => {
+    saveSvgAsPng(document.querySelector("svg"), "graph.png", {
+      backgroundColor: "white",
+      encoderOptions: 1,
+      left: 20,
+    });
+  };
+
   return (
-    <div className="bg-pink-50 h-screen">
+    <div className="bg-pink-50 h-fit xl:h-full">
       <Navbar title={t("title-name")} />
-      <div className="flex gap-4 py-10 px-20 h-fit">
+      <div className="flex lg:flex-row flex-col-reverse gap-4 py-10 lg:px-20 px-2 h-fit">
         <SidePanel
           title={t("instruction-title")}
           instructions={instructions}
@@ -55,57 +64,55 @@ function App() {
           correctness={correctness}
         />
         <div className="right-side flex flex-col w-full">
-          <div className="flex justify-between gap-2 m-2 btns">
-            <div className="flex gap-2 m-2 btns">
-              <Button
-                text={t("add-btn")}
-                icon="plus"
-                color={"green"}
-                isActive={mode === "add" ? true : false}
-                onClick={() => setMode(mode === "add" ? "drag" : "add")}
-              />
-              <Button
-                text={t("clear-btn")}
-                icon="trash-can"
-                color={"red"}
-                onClick={handleClear}
-              />
-              <Button
-                text={t("remove-btn")}
-                icon="xmark"
-                color={"red"}
-                isActive={mode === "remove" ? true : false}
-                onClick={() => setMode(mode === "remove" ? "drag" : "remove")}
-              />
-              <Button
-                text={t("connect-btn")}
-                icon="circle-nodes"
-                color={"blue"}
-                isActive={mode === "connect" ? true : false}
-                onClick={() => setMode(mode === "connect" ? "drag" : "connect")}
-              />
-              <Button
-                text={t("export-btn")}
-                icon="file-export"
-                color={"yellow"}
-                isActive={mode === "export" ? true : false}
-                onClick={() => setMode(mode === "export" ? "drag" : "export")}
-              />
-              <ColorPicker
-                color={"emerald"}
-                colorValue={colorValue}
-                setColorValue={setColorValue}
-                mode={mode}
-                setMode={setMode}
-              />
-              <Button
-                text={t("drag-btn")}
-                icon="up-down-left-right"
-                color={"indigo"}
-                isActive={mode === "drag" ? true : false}
-                onClick={() => setMode("drag")}
-              />
-            </div>
+          <div className="flex flex-wrap justify-center gap-2 m-2 btns ">
+            <Button
+              text={t("add-btn")}
+              icon="plus"
+              color={"green"}
+              isActive={mode === "add" ? true : false}
+              onClick={() => setMode(mode === "add" ? "drag" : "add")}
+            />
+            <Button
+              text={t("clear-btn")}
+              icon="trash-can"
+              color={"red"}
+              onClick={handleClear}
+            />
+            <Button
+              text={t("remove-btn")}
+              icon="xmark"
+              color={"red"}
+              isActive={mode === "remove" ? true : false}
+              onClick={() => setMode(mode === "remove" ? "drag" : "remove")}
+            />
+            <Button
+              text={t("connect-btn")}
+              icon="circle-nodes"
+              color={"blue"}
+              isActive={mode === "connect" ? true : false}
+              onClick={() => setMode(mode === "connect" ? "drag" : "connect")}
+            />
+            <Button
+              text={t("export-btn")}
+              icon="file-export"
+              color={"yellow"}
+              isActive={mode === "export" ? true : false}
+              onClick={handleExport}
+            />
+            <ColorPicker
+              color={"emerald"}
+              colorValue={colorValue}
+              setColorValue={setColorValue}
+              mode={mode}
+              setMode={setMode}
+            />
+            <Button
+              text={t("drag-btn")}
+              icon="up-down-left-right"
+              color={"indigo"}
+              isActive={mode === "drag" ? true : false}
+              onClick={() => setMode("drag")}
+            />
           </div>
           <Canvas
             nodes={nodes}

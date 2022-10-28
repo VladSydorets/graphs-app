@@ -33,4 +33,10 @@ code {
   .btns {
     height: fit-content;
   }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
 }

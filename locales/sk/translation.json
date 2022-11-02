@@ -1,12 +1,15 @@
 {
   "title-name": "Farbenie Grafu",
   "instruction-title": "Inštrukcie:",
-  "first-instruction": "Ak chcete pridať nový vrchol, vyberte 'Pridať vrchol' a potom kliknite ľavým tlačidlom myši na plátno.",
-  "second-instruction": "Ak chcete spojiť vrcholy, vyberte 'Pripojiť' a potiahnite z jedného vrcholu do druhého.",
-  "third-instruction": "Ak chcete odstrániť vrchol/hranu, kliknite pravým tlačidlom myši na vrchol/hranu.",
-  "fourth-instruction": "Ak chcete plátno vyčistiť, môžete kliknúť na tlačidlo 'Vymazať všetko'.",
+  "instructions": [
+    "Ak chcete pridať nový vrchol, kliknite na tlačidlo 'Pridať' a potom kliknite na plátno.",
+    "Ak chcete spojiť vrcholy, kliknite na tlačidlo 'Pripojiť' a potiahnite okraj z jedného vrcholu do druhého.",
+    "Ak chcete odstrániť vrchol/hranu, kliknite na tlačidlo 'Odstrániť' a ľavým tlačidlom myši kliknite na vrchol/hranu, ktorú chcete odstrániť.",
+    "Ak chcete vyčistiť plátno, môžete kliknúť na tlačidlo 'Vymazať'.",
+    "Kliknutím na tlačidlo 'Exportovať' môžete plátno uložiť vo formáte png."
+  ],
   "add-btn": "Pridať",
-  "clear-btn": "Vyčistiť",
+  "clear-btn": "Vymazať",
   "remove-btn": "Odstrániť",
   "connect-btn": "Pripojiť",
   "export-btn": "Exportovať",

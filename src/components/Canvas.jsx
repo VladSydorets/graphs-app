@@ -23,20 +23,19 @@ const Canvas = ({
     svg.selectAll("*").remove();
     svg.attr("width", width).attr("height", height);
 
+    //
     const svgClick = (event, d) => {
       if (mode === "add") {
         if (event.defaultPrevented) return;
-        if (mode === "add") {
-          let coords = d3.pointer(event);
-          let newNode = {
-            x: coords[0],
-            y: coords[1],
-            color: colorValue,
-            id: nodes.length !== 0 ? nodes[nodes.length - 1].id + 1 : 1,
-          };
-          setNodes([...nodes, newNode]);
-          checkCorrectness();
-        }
+        let coords = d3.pointer(event);
+        let newNode = {
+          x: coords[0],
+          y: coords[1],
+          color: colorValue,
+          id: nodes.length !== 0 ? nodes[nodes.length - 1].id + 1 : 1,
+        };
+        setNodes([...nodes, newNode]);
+        checkCorrectness();
       }
     };
 
@@ -297,7 +296,10 @@ const Canvas = ({
     svg
       .on("pointermove", updateDragLine)
       .on("pointerup", hideDragLine)
-      .on("pointerleave", hideDragLine);
+      .on("pointerleave", hideDragLine)
+      .on("touchmove", updateDragLine)
+      .on("touchend", hideDragLine)
+      .on("touchcancel", hideDragLine);
   }, [nodes, links, colorValue, mode, setCorrectness, setLinks, setNodes]);
 
   return (

@@ -9,7 +9,7 @@ const Dropdown = () => {
   };
 
   return (
-    <div className="relative w-24 lg:max-w-sm ">
+    <div className="relative w-24 lg:max-w-sm mx-6">
       <select
         onChange={handleChange}
         className=" text-white text-sm outline-none border rounded-lg block w-fit p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400"

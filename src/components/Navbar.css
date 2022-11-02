@@ -1,0 +1,39 @@
+@-webkit-keyframes TOGGLE-BTN {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes TOGGLE-BTN {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes TOGGLE-BTN {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes TOGGLE-BTN {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.toggle-btn {
+  -webkit-animation: TOGGLE-BTN 2s ease;
+  -moz-animation: TOGGLE-BTN 2s ease;
+  -o-animation: TOGGLE-BTN 2s ease;
+  animation: TOGGLE-BTN 2s ease;
+}

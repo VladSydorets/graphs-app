@@ -8,8 +8,13 @@ import { useTranslation } from "react-i18next";
 import { saveSvgAsPng } from "save-svg-as-png";
 
 function App() {
-  let [colorValue, setColorValue] = useState("#000000");
+  const [colorValue, setColorValue] = useState("#000000"); // string(hex color value)
+  const [darkToggle, setDarkToggle] = useState(false); // boolean
+  const [mode, setMode] = useState("drag"); // string("drag", "add", "connect", "remove", "color")
+  const [correctness, setCorrectness] = useState(true); // boolean
+  const { t } = useTranslation();
 
+  // Initial data to display
   const [nodes, setNodes] = useState([
     { id: 1, color: "#FCDC00", x: 20, y: 15 },
     { id: 2, color: "#4D4D4D", x: 170, y: 45 },
@@ -17,7 +22,6 @@ function App() {
     { id: 4, color: "#F44E3B", x: 170, y: 45 },
     { id: 5, color: "#FB9E00", x: 220, y: 55 },
   ]);
-
   const [links, setLinks] = useState([
     { source: 0, target: 3, color: "#FCDC00" },
     { source: 0, target: 2, color: "#4D4D4D" },
@@ -29,22 +33,13 @@ function App() {
     { source: 2, target: 3, color: "#16A5A5" },
   ]);
 
+  // Sets nodes and links states to empty arrays
   const handleClear = () => {
     setNodes([]);
     setLinks([]);
   };
 
-  const [mode, setMode] = useState("drag"); // string
-  const [correctness, setCorrectness] = useState(true); // boolean
-  const { t } = useTranslation();
-
-  const instructions = [
-    t("first-instruction"),
-    t("second-instruction"),
-    t("third-instruction"),
-    t("fourth-instruction"),
-  ];
-
+  // Handles export functionality using saveSvgAsPng package
   const handleExport = () => {
     saveSvgAsPng(document.querySelector("svg"), "graph.png", {
       backgroundColor: "white",
@@ -54,12 +49,15 @@ function App() {
   };
 
   return (
-    <div className="bg-pink-50 h-fit xl:h-full">
-      <Navbar title={t("title-name")} />
+    <div className="dark:bg-slate-800 bg-pink-50 h-fit xl:h-full">
+      <Navbar
+        title={t("title-name")}
+        darkToggle={darkToggle}
+        setDarkToggle={setDarkToggle}
+      />
       <div className="flex lg:flex-row flex-col-reverse gap-4 py-10 lg:px-20 px-2 h-fit">
         <SidePanel
           title={t("instruction-title")}
-          instructions={instructions}
           text={t("correctness-text")}
           correctness={correctness}
         />

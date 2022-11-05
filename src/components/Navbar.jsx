@@ -17,7 +17,7 @@ const Navbar = ({ title, darkToggle, setDarkToggle }) => {
       <nav className="flex justify-between items-center w-full h-full">
         <a
           href="/#"
-          className="font-normal sm:text-lg text-sm px-3 py-2 text-neutral-50 hover:text-neutral-300 text-center dark:text-black"
+          className="font-normal sm:text-lg text-sm px-3 py-2 text-neutral-50 hover:text-neutral-300 text-center"
         >
           {title}
         </a>

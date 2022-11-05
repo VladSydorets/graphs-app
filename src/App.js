@@ -49,7 +49,7 @@ function App() {
   };
 
   return (
-    <div className="dark:bg-slate-800 bg-pink-50 h-fit xl:h-full">
+    <div className="dark:bg-slate-800 bg-white h-fit xl:h-full">
       <Navbar
         title={t("title-name")}
         darkToggle={darkToggle}

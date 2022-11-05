@@ -123,6 +123,9 @@ const Canvas = ({
 
     const beginDragLine = (event, d) => {
       if (mode === "connect") {
+        if (event.target.hasPointerCapture(event.pointerId)) {
+          event.target.releasePointerCapture(event.pointerId);
+        }
         mousedownNode = d;
         dragLine
           .classed("hidden", false)
@@ -156,7 +159,7 @@ const Canvas = ({
       );
     };
 
-    const hideDragLine = () => {
+    const hideDragLine = (event, d) => {
       dragLine.classed("hidden", true);
       mousedownNode = null;
     };
@@ -165,6 +168,7 @@ const Canvas = ({
       if (mode === "connect") {
         if (!mousedownNode || mousedownNode === d) return;
         //return if link already exists
+        console.log(event);
         for (let i = 0; i < links.length; i++) {
           let l = links[i];
           if (
@@ -205,9 +209,14 @@ const Canvas = ({
       .attr("stroke", "black")
       .attr("r", radius)
       .call(drag)
-      .on("pointerdown", beginDragLine)
+      .on("touchstart", beginDragLine)
       .on("pointerup", endDragLine)
+      .on("pointerdown", beginDragLine)
       .on("click", clicked);
+
+    // if (mousedownNode != null) {
+    //   svg.on("click", (event, d) => console.log(event));
+    // }
 
     const tick = () => {
       checkCorrectness();
@@ -296,10 +305,11 @@ const Canvas = ({
     svg
       .on("pointermove", updateDragLine)
       .on("pointerup", hideDragLine)
-      .on("pointerleave", hideDragLine)
-      .on("touchmove", updateDragLine)
-      .on("touchend", hideDragLine)
-      .on("touchcancel", hideDragLine);
+      .on("pointerleave", hideDragLine);
+    // .on("touchmove", updateDragLine)
+    // .on("touchcancel", hideDragLine)
+    // .on("touchend", hideDragLine)
+    // .on("touchstart", () => console.log("here"));
   }, [nodes, links, colorValue, mode, setCorrectness, setLinks, setNodes]);
 
   return (

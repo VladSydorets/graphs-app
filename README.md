@@ -1,6 +1,17 @@
-# Getting Started with Create React App
+![localhost_3000_graphs-app](https://user-images.githubusercontent.com/39927384/201492107-04c289ee-8a7c-42a5-8e43-d0bc30321d31.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Graphs Coloring App
+
+Single page React.js application that allows users to create graph structures, export the canvas as a png image and check the correctness of coloring.
+
+## Technologies:
+- ReactJS -> Dependencies: save-svg-as-png, react-color
+- Tailwind CSS
+- i18next
+- D3.js
+
+## Demo:
+https://vladsydorets.github.io/graphs-app/
 
 ## Available Scripts
 

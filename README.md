@@ -2,10 +2,10 @@
 
 # Graphs Coloring App
 
-Single page React.js application that allows users to create graph structures, export the canvas as a png image and check the correctness of coloring.
+Single page React application that allows users to create graph structures, export the canvas as a png image and check the correctness of coloring.
 
 ## Technologies:
-- ReactJS -> Dependencies: save-svg-as-png, react-color
+- React -> Dependencies: save-svg-as-png, react-color
 - Tailwind CSS
 - i18next
 - D3.js

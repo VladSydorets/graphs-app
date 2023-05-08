@@ -4,12 +4,14 @@ import "./Canvas.css";
 
 const Canvas = ({
   nodes,
-  setNodes,
   links,
+  setNodes,
   setLinks,
   colorValue,
   mode,
   setCorrectness,
+  coloringMode,
+  savePrevState,
 }) => {
   const d3SVG = useRef();
 
@@ -26,6 +28,7 @@ const Canvas = ({
     //
     const svgClick = (event, d) => {
       if (mode === "add") {
+        savePrevState();
         if (event.defaultPrevented) return;
         let coords = d3.pointer(event);
         let newNode = {
@@ -69,6 +72,7 @@ const Canvas = ({
       if (event.defaultPrevented) return;
 
       if (mode === "remove") {
+        savePrevState();
         let updatedNodes = [...nodes];
         let updatedLinks = [...links];
 
@@ -95,6 +99,7 @@ const Canvas = ({
 
       if (mode === "color") {
         d.color = colorValue;
+        savePrevState();
 
         d3.select(event.currentTarget)
           .transition()
@@ -166,9 +171,9 @@ const Canvas = ({
 
     const endDragLine = (event, d) => {
       if (mode === "connect") {
+        savePrevState();
         if (!mousedownNode || mousedownNode === d) return;
         //return if link already exists
-        console.log(event);
         for (let i = 0; i < links.length; i++) {
           let l = links[i];
           if (
@@ -257,45 +262,54 @@ const Canvas = ({
 
     const checkCorrectness = () => {
       if (links.length < 1) setCorrectness(true);
+
       for (let link of links) {
-        // check adjacent vertices
-        if (link.source.color === link.target.color) {
-          setCorrectness(false);
-          return;
+        if (coloringMode === "vertices" || coloringMode === "total") {
+          // check adjacent vertices
+          if (link.source.color === link.target.color) {
+            setCorrectness(false);
+            return;
+          }
         }
-        // check edges and vertices
-        if (
-          link.color === link.source.color ||
-          link.color === link.target.color
-        ) {
-          setCorrectness(false);
-          return;
-        }
-        // check adjacent edges
-        for (let l of links) {
-          if (link === l) continue;
+        if (coloringMode === "total") {
+          // check edges and vertices
           if (
-            link.source.id === l.target.id ||
-            link.source.id === l.source.id ||
-            link.target.id === l.source.id ||
-            link.target.id === l.target.id
+            link.color === link.source.color ||
+            link.color === link.target.color
           ) {
-            if (link.color === l.color) {
-              console.log(link, l);
-              setCorrectness(false);
-              return;
+            setCorrectness(false);
+            return;
+          }
+        }
+        if (coloringMode === "edges" || coloringMode === "total") {
+          // check adjacent edges
+          for (let l of links) {
+            if (link === l) continue;
+            if (
+              link.source.id === l.target.id ||
+              link.source.id === l.source.id ||
+              link.target.id === l.source.id ||
+              link.target.id === l.target.id
+            ) {
+              if (link.color === l.color) {
+                setCorrectness(false);
+                return;
+              }
             }
           }
         }
       }
+
       setCorrectness(true);
     };
 
     // force(movement) logic
     let force = d3
       .forceSimulation()
-      .force("charge", d3.forceManyBody())
-      .force("link", d3.forceLink().distance(100).strength(0.75))
+      // .force("charge", d3.forceManyBody())
+      // .force("link", d3.forceLink().distance(100).strength(0.75))
+      .force("link", d3.forceLink().distance(0).strength(0))
+      // .force("link", d3.forceLink().distance(20).strength(0))
       .force("collide", d3.forceCollide(16).strength(1))
       .on("tick", tick);
 
@@ -310,7 +324,17 @@ const Canvas = ({
     // .on("touchcancel", hideDragLine)
     // .on("touchend", hideDragLine)
     // .on("touchstart", () => console.log("here"));
-  }, [nodes, links, colorValue, mode, setCorrectness, setLinks, setNodes]);
+  }, [
+    nodes,
+    links,
+    setLinks,
+    setNodes,
+    colorValue,
+    mode,
+    setCorrectness,
+    coloringMode,
+    savePrevState,
+  ]);
 
   return (
     <div id="canvas">

@@ -23,8 +23,8 @@ function Button({ text, icon, color, isActive, ...buttonProps }) {
     indigo: "border-indigo-500 bg-indigo-500 hover:bg-indigo-600",
   };
 
-  const classValue = `md:text-base text-xs border rounded-md md:px-5 px-3 py-1 h-fit ${colors[color]}`; // string
-  const activeClassValue = `md:text-base text-xs border rounded-md text-rose-50 md:px-5 px-3 py-1 h-fit ${activeColors[color]}`; // string
+  const classValue = `md:text-base text-xs border rounded-md md:px-5 px-3 py-1 h-fit ${colors[color]} flex justify-center gap-2 items-center min-h-[34px]`; // string
+  const activeClassValue = `md:text-base text-xs border rounded-md text-rose-50 md:px-5 px-3 py-1 h-fit ${activeColors[color]} flex justify-center gap-2 items-center min-h-[34px]`; // string
 
   const iconValue = `fa-solid fa-${icon}`; // string
 

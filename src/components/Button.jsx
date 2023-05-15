@@ -12,7 +12,7 @@ function Button({ text, icon, color, isActive, ...buttonProps }) {
       "text-emerald-400 border-emerald-400 hover:text-emerald-50 hover:bg-emerald-400",
     indigo:
       "text-indigo-500 border-indigo-500 hover:text-indigo-50 hover:bg-indigo-500	",
-  };
+  }; // Tailwind CSS classes for different colors
 
   const activeColors = {
     green: "border-green-600 bg-green-600 hover:bg-green-700",
@@ -21,7 +21,7 @@ function Button({ text, icon, color, isActive, ...buttonProps }) {
     red: "border-red-600 bg-red-600 hover:bg-red-700",
     emerald: "border-emerald-400 bg-emerald-400 hover:bg-emerald-500",
     indigo: "border-indigo-500 bg-indigo-500 hover:bg-indigo-600",
-  };
+  }; // Tailwind CSS classes for different active colors
 
   const classValue = `md:text-base text-xs border rounded-md md:px-5 px-3 py-1 h-fit ${colors[color]} flex justify-center gap-2 items-center min-h-[34px]`; // string
   const activeClassValue = `md:text-base text-xs border rounded-md text-rose-50 md:px-5 px-3 py-1 h-fit ${activeColors[color]} flex justify-center gap-2 items-center min-h-[34px]`; // string

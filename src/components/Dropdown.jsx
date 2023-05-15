@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 const Dropdown = () => {
   const { i18n, t } = useTranslation();
 
+  // Handles the change of the language of the app
   const handleChange = (e) => {
     i18n.changeLanguage(e.currentTarget.value);
   };

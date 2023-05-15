@@ -23,8 +23,9 @@ function App() {
     { id: 4, color: "#F44E3B", x: 350, y: 100 },
     { id: 5, color: "#FB9E00", x: 600, y: 100 },
   ]);
+
   const [links, setLinks] = useState([
-    { source: 0, target: 3, color: "#FCDC00" },
+    { source: 0, target: 3, color: "#FA28FF" },
     { source: 0, target: 2, color: "#4D4D4D" },
     { source: 1, target: 2, color: "#653294" },
     { source: 1, target: 3, color: "#F44E3B" },
@@ -34,9 +35,13 @@ function App() {
     { source: 2, target: 3, color: "#16A5A5" },
   ]);
 
+  // States for storing previous nodes and links - Undo functionality
   const [prevNodes, setPrevNodes] = useState([nodes]);
   const [prevLinks, setPrevLinks] = useState([links]);
 
+  /**
+   * Saves the previous states of nodes and links.
+   */
   const savePrevState = () => {
     let newPrevNodes = [...prevNodes, nodes];
     setPrevNodes(newPrevNodes);
@@ -45,10 +50,12 @@ function App() {
     setPrevLinks(newPrevLinks);
   };
 
-  const handleAddClick = () => {
-    setMode(mode === "add" ? "drag" : "add");
-  };
-
+  /**
+   * Handles the undo functionality of the app.
+   * Function to revert back to the previous state of the graph.
+   * It is done by taking the previous states and setting them to the current state.
+   * Updates the previous states by removing the last items.
+   */
   const handlePreviousState = () => {
     if (prevNodes.length !== 0 || prevLinks.length !== 0) {
       setNodes(prevNodes[prevNodes.length - 1]);
@@ -64,14 +71,21 @@ function App() {
     }
   };
 
-  // Empties nodes and links
+  /**
+   * Handles the clear functionality.
+   * Saves the previous states.
+   * Sets the current graph states to be an empty arrays.
+   */
   const handleClear = () => {
     savePrevState();
     setNodes([]);
     setLinks([]);
   };
 
-  // Handles export functionality using saveSvgAsPng package
+  /**
+   * Handles the export functionality of the app.
+   * It saves the SVG canvas as a PNG image using the "saveSvgAsPng" library.
+   */
   const handleExport = () => {
     saveSvgAsPng(document.querySelector("svg"), "graph.png", {
       backgroundColor: "white",
@@ -110,8 +124,8 @@ function App() {
                 icon="plus"
                 color={"green"}
                 isActive={mode === "add" ? true : false}
-                onClick={handleAddClick}
-                // onClick={() => setMode(mode === "add" ? "drag" : "add")}
+                // onClick={handleAddClick}
+                onClick={() => setMode(mode === "add" ? "drag" : "add")}
               />
               <Button
                 text={t("clear-btn")}

@@ -20,8 +20,9 @@ export const ColorPicker = ({ color, setColorValue, setMode, mode }) => {
     "#7B64FF",
     "#FA28FF",
     "#CCCCCC",
-  ];
+  ]; // array of strings(hex color values)
 
+  // Additional styling needed for the color picker
   const popover = {
     position: "absolute",
     zIndex: "2",

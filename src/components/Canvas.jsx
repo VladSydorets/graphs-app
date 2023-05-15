@@ -19,13 +19,18 @@ const Canvas = ({
     const svg = d3.select(d3SVG.current);
     const width = parseInt(d3.select("#canvas").style("width")) - 2.5;
     const height = parseInt(d3.select("#canvas").style("height")) - 2.5;
-    const radius = 16;
-    let mousedownNode = null;
-
     svg.selectAll("*").remove();
     svg.attr("width", width).attr("height", height);
 
-    //
+    const radius = 16; // Radius of the node
+    let mousedownNode = null;
+
+    /**
+     * Handles the click event on the SVG canvas.
+     * Retrieves the coordinates using d3.pointer.
+     * Creates a new node object.
+     * Adds the newly created object to the existing array of 'nodes'.
+     */
     const svgClick = (event, d) => {
       if (mode === "add") {
         savePrevState();
@@ -67,7 +72,11 @@ const Canvas = ({
       }
     };
 
-    // click function for edges and vertices
+    /**
+     * Handles the click event on the nodes and links.
+     * Depending on the 'mode' state, it performs a 'remove' or 'color'
+     * action on the corresponding element.
+     */
     const clicked = (event, d) => {
       if (event.defaultPrevented) return;
 
@@ -188,13 +197,17 @@ const Canvas = ({
       }
     };
 
-    // drag logic
+    // Drag logic
     let drag = d3
       .drag()
       .on("start", dragStarted)
       .on("drag", dragged)
       .on("end", dragEnded);
 
+    /**
+     * Creates an edge, appends it to the SVG canvas,
+     * and binds data from the 'links' state to it using D3.js methods
+     */
     let edges = svg
       .append("g")
       .selectAll("line")
@@ -204,6 +217,10 @@ const Canvas = ({
       .attr("stroke", (d) => d.color)
       .on("click", clicked);
 
+    /**
+     * Creates a vertex, appends it to the SVG canvas,
+     * and binds data from the 'nodes' state to it using D3.js methods.
+     */
     let vertices = svg
       .append("g")
       .selectAll("circle")
@@ -219,10 +236,11 @@ const Canvas = ({
       .on("pointerdown", beginDragLine)
       .on("click", clicked);
 
-    // if (mousedownNode != null) {
-    //   svg.on("click", (event, d) => console.log(event));
-    // }
-
+    /**
+     * The 'tick' function is responsible for updating the positions
+     * of edges and vertices on the SVG canvas according
+     * to the current state of the 'nodes' and 'links'.
+     */
     const tick = () => {
       checkCorrectness();
       edges
@@ -260,6 +278,10 @@ const Canvas = ({
         });
     };
 
+    /**
+     * Performs a validity check on the correctness of the graph's coloring
+     * according to the selected 'mode' of the application.
+     */
     const checkCorrectness = () => {
       if (links.length < 1) setCorrectness(true);
 
@@ -303,13 +325,10 @@ const Canvas = ({
       setCorrectness(true);
     };
 
-    // force(movement) logic
+    // The following code sample sets up a force and collide simulation using D3.js.
     let force = d3
       .forceSimulation()
-      // .force("charge", d3.forceManyBody())
-      // .force("link", d3.forceLink().distance(100).strength(0.75))
       .force("link", d3.forceLink().distance(0).strength(0))
-      // .force("link", d3.forceLink().distance(20).strength(0))
       .force("collide", d3.forceCollide(16).strength(1))
       .on("tick", tick);
 
@@ -320,10 +339,6 @@ const Canvas = ({
       .on("pointermove", updateDragLine)
       .on("pointerup", hideDragLine)
       .on("pointerleave", hideDragLine);
-    // .on("touchmove", updateDragLine)
-    // .on("touchcancel", hideDragLine)
-    // .on("touchend", hideDragLine)
-    // .on("touchstart", () => console.log("here"));
   }, [
     nodes,
     links,

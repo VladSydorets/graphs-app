@@ -108,7 +108,7 @@ function App() {
           correctness={correctness}
         />
         <div className="right-side flex flex-col w-full">
-          <div className="flex flex-wrap justify-start gap-2 m-2 btns ">
+          <div className="flex flex-wrap lg:justify-start gap-2 m-2 btns justify-center">
             <div className="flex justify-center gap-2">
               <Button
                 text={""}
@@ -118,7 +118,7 @@ function App() {
               />
               {/* <Button text={""} icon="rotate-right" color={"indigo"} /> */}
             </div>
-            <div className="flex justify-center gap-2">
+            <div className="flex flex-wrap justify-center gap-2">
               <Button
                 text={t("add-btn")}
                 icon="plus"

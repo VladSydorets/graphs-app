@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/graphs-app/static/css/main.61c5f357.css",
-    "main.js": "/graphs-app/static/js/main.bcbaac41.js",
+    "main.css": "/graphs-app/static/css/main.bb823cbe.css",
+    "main.js": "/graphs-app/static/js/main.e9b0fabb.js",
     "index.html": "/graphs-app/index.html",
     "static/media/getFetch.cjs": "/graphs-app/static/media/getFetch.40f37ddea2378391108f.cjs",
-    "main.61c5f357.css.map": "/graphs-app/static/css/main.61c5f357.css.map",
-    "main.bcbaac41.js.map": "/graphs-app/static/js/main.bcbaac41.js.map"
+    "main.bb823cbe.css.map": "/graphs-app/static/css/main.bb823cbe.css.map",
+    "main.e9b0fabb.js.map": "/graphs-app/static/js/main.e9b0fabb.js.map"
   },
   "entrypoints": [
-    "static/css/main.61c5f357.css",
-    "static/js/main.bcbaac41.js"
+    "static/css/main.bb823cbe.css",
+    "static/js/main.e9b0fabb.js"
   ]
 }

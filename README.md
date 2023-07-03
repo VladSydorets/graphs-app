@@ -1,4 +1,4 @@
-![localhost_3000_graphs-app](https://user-images.githubusercontent.com/39927384/201492107-04c289ee-8a7c-42a5-8e43-d0bc30321d31.png)
+![full-app](https://github.com/VladSydorets/graphs-app/assets/39927384/b82f8399-ae55-4673-84ff-872eeaed753a)
 
 # Graphs Coloring App
 

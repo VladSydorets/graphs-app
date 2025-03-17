@@ -1,17 +1,22 @@
-![full-app](https://github.com/VladSydorets/graphs-app/assets/39927384/b82f8399-ae55-4673-84ff-872eeaed753a)
-
 # Graphs Coloring App
 
-Single page React application that allows users to create graph structures, export the canvas as a png image and check the correctness of coloring.
+![Full App Screenshot](https://github.com/VladSydorets/graphs-app/assets/39927384/b82f8399-ae55-4673-84ff-872eeaed753a)
 
-## Technologies:
-- React -> Dependencies: save-svg-as-png, react-color
-- Tailwind CSS
-- i18next
-- D3.js
+A single-page React application designed to help users create graph structures, validate graph coloring accuracy, and export the canvas as PNG images. Perfect for learning graph theory or experimenting with visualizations.
 
-## Demo:
-https://vladsydorets.github.io/graphs-app/
+## Features
+- Create and edit graph structures interactively
+- Validate the correctness of graph coloring
+- Export graphs as PNG images
+
+## Technologies
+- **React**: Core framework with dependencies `save-svg-as-png` (for exports) and `react-color` (for color picking)
+- **Tailwind CSS**: Styling for a responsive, modern UI
+- **i18next**: Multilingual support
+- **D3.js**: SVG canvas manipulation for graph rendering
+
+## Demo
+Try it live: [https://vladsydorets.github.io/graphs-app/](https://vladsydorets.github.io/graphs-app/)
 
 ## Available Scripts
 
